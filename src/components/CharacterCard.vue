@@ -2,6 +2,10 @@
   <div :class="`CharacterCard CharacterCard--${this.orientation}`">
     <img class="CharacterCard__img" :src="this.img" alt="" />
     <div class="CharacterCard__description">
+      <!--  -->
+      <div>{{ isFavourite(this.id) }}</div>
+      <hr />
+      <!--  -->
       <div class="CharacterCard__name">{{ this.name }}</div>
       <div class="CharacterCard__species-status">
         {{ this.species }}-{{ this.status }}
@@ -12,12 +16,16 @@
       <div class="CharacterCard__first-episode">
         First seen in: {{ this.firstEpisodeNumber }} episode
       </div>
-      <button @click.prevent="handleClick">Add to Favourites</button>
+      <button @click.prevent="handleClick">
+        <div v-if="!isFavourite(this.id)">Add to Favourites</div>
+        <div v-else>Remove from Favourites</div>
+      </button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapMutations, mapGetters } from "vuex";
 import { getFirstEpisodeNumber } from "../functions/getFirstEpisodeNumber";
 export default {
   name: "CharacterCard",
@@ -32,14 +40,20 @@ export default {
     "episode",
   ],
   computed: {
+    ...mapGetters(["isFavourite"]),
     firstEpisodeNumber() {
       return getFirstEpisodeNumber(this.episode);
     },
   },
   methods: {
+    ...mapMutations(["PUSH_FAVOURITE_CHARACTER_ID"]),
     handleClick(e) {
       e.stopPropagation();
-      console.log("click");
+      if (!this.isFavourite(this.id)) {
+        this.$store.commit("PUSH_FAVOURITE_CHARACTER_ID", this.id);
+      } else {
+        this.$store.commit("DELETE_FAVOURITE_CHARACTER_ID", this.id);
+      }
     },
   },
 };
