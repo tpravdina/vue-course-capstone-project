@@ -10,9 +10,9 @@
         Last known location: {{ this.location }}
       </div>
       <div class="CharacterCard__first-episode">
-        First seen in: {{ this.firstEpisodeNumber }}
+        First seen in: {{ this.firstEpisodeNumber }} episode
       </div>
-      <button>Add to Favourites</button>
+      <button @click.prevent="handleClick">Add to Favourites</button>
     </div>
   </div>
 </template>
@@ -22,6 +22,7 @@ import { getFirstEpisodeNumber } from "../functions/getFirstEpisodeNumber";
 export default {
   name: "CharacterCard",
   props: [
+    "id",
     "img",
     "name",
     "species",
@@ -33,6 +34,12 @@ export default {
   computed: {
     firstEpisodeNumber() {
       return getFirstEpisodeNumber(this.episode);
+    },
+  },
+  methods: {
+    handleClick(e) {
+      e.stopPropagation();
+      console.log("click");
     },
   },
 };

@@ -1,5 +1,5 @@
 import { createStore } from "vuex";
-
+import { getAllCharacters } from "../services/CharacterService";
 export default createStore({
   state: {
     characters: [],
@@ -7,14 +7,12 @@ export default createStore({
   mutations: {
     UPDATE_CHARACTERS(state, characters): void {
       state.characters = characters;
-      console.log(state.characters);
     },
   },
   actions: {
     async fetchCharacters(ctx): Promise<void> {
-      const res = await fetch("https://rickandmortyapi.com/api/character");
-      const characters = await res.json();
-      ctx.commit("UPDATE_CHARACTERS", characters.results);
+      const characters = await getAllCharacters();
+      ctx.commit("UPDATE_CHARACTERS", characters);
     },
   },
   getters: {

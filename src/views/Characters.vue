@@ -1,15 +1,21 @@
 <template>
-  <CharacterCard
+  <router-link
     v-for="character in characters"
     :key="character.id"
-    :img="character.image"
-    :name="character.name"
-    :species="character.species"
-    :status="character.status"
-    :location="character.location.name"
-    :episode="character.episode"
-    orientation="vertical"
-  />
+    class="router-link"
+    :to="{ name: 'CharacterDetails', params: { id: character.id } }"
+  >
+    <CharacterCard
+      :id="character.id"
+      :img="character.image"
+      :name="character.name"
+      :species="character.species"
+      :status="character.status"
+      :location="character.location.name"
+      :episode="character.episode"
+      orientation="vertical"
+    />
+  </router-link>
 </template>
 
 <script lang="ts">
@@ -21,14 +27,17 @@ export default defineComponent({
   components: { CharacterCard },
   async mounted() {
     this.fetchCharacters();
-    console.log(this.characters);
   },
   methods: {
     ...mapActions(["fetchCharacters"]),
-    // handleClick() {
-    //   this.$store.dispatch("fetchCharacters");
-    // },
   },
   computed: mapGetters(["characters"]),
 });
 </script>
+
+<style>
+.router-link {
+  text-decoration: none;
+  color: black;
+}
+</style>
