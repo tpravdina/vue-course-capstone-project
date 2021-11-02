@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { defineComponent } from "vue";
-import { mapGetters, mapActions } from "vuex";
+import { mapGetters } from "vuex";
 import CharacterCard from "../components/CharacterCard.vue";
 export default defineComponent({
   name: "Favourites",
