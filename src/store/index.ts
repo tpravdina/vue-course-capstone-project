@@ -1,9 +1,15 @@
 import { createStore } from "vuex";
 import { getAllCharacters } from "../services/CharacterService";
+import {
+  getLocalFavouritesIds,
+  updateLocalFavouritesIds,
+} from "../services/LocalStorage";
+import { CharacterType } from "../types";
+
 export default createStore({
   state: {
     characters: [],
-    favouriteCharactersIds: [1, 2, 3],
+    favouriteCharactersIds: getLocalFavouritesIds(),
   },
   mutations: {
     UPDATE_CHARACTERS(state, characters): void {
@@ -11,6 +17,7 @@ export default createStore({
     },
     PUSH_FAVOURITE_CHARACTER_ID(state, id): void {
       state.favouriteCharactersIds.push(id);
+      updateLocalFavouritesIds(state.favouriteCharactersIds);
     },
     DELETE_FAVOURITE_CHARACTER_ID(state, id): void {
       const index = state.favouriteCharactersIds.indexOf(id);
@@ -18,6 +25,7 @@ export default createStore({
         ...state.favouriteCharactersIds.slice(0, index),
         ...state.favouriteCharactersIds.slice(index + 1),
       ];
+      updateLocalFavouritesIds(state.favouriteCharactersIds);
     },
   },
   actions: {
@@ -34,10 +42,8 @@ export default createStore({
       return state.favouriteCharactersIds;
     },
     favouriteCharacters(state) {
-      return state.favouriteCharactersIds.map((id) =>
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        //@ts-ignore
-        state.characters.find((elem) => elem.id === id)
+      return state.favouriteCharactersIds.map((id: number) =>
+        state.characters.find((elem: CharacterType) => elem.id === id)
       );
     },
     isFavourite: (state) => (id: number) => {
