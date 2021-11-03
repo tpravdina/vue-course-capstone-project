@@ -8,6 +8,15 @@ const routes: Array<RouteRecordRaw> = [
     path: "/",
     name: "Characters",
     component: Characters,
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    props: (route) => ({
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+      page: parseInt(route.query.page) || 1,
+      species: route.query.species || "",
+      name: route.query.name || "",
+    }),
   },
   {
     path: "/character/:id",

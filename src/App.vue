@@ -5,15 +5,8 @@
 
 <script>
 import Navigation from "./components/Navigation.vue";
-import { mapActions } from "vuex";
 export default {
   components: { Navigation },
-  async mounted() {
-    this.fetchCharacters();
-  },
-  methods: {
-    ...mapActions(["fetchCharacters"]),
-  },
 };
 </script>
 

@@ -4,6 +4,28 @@ export const getAllCharacters = async () => {
   return characters.results;
 };
 
+import { getLocalFavouritesIds } from "./LocalStorage";
+export const getFavouriteCharacters = async () => {
+  if (getLocalFavouritesIds().length !== 0) {
+    const res = await fetch(
+      `https://rickandmortyapi.com/api/character/${getLocalFavouritesIds().join(
+        ","
+      )}`
+    );
+    const favouriteCharacters = await res.json();
+    return favouriteCharacters;
+  }
+  return [];
+};
+
+export const fetchCharactersByQuery = async (queryString: string) => {
+  const res = await fetch(
+    `https://rickandmortyapi.com/api/character/${queryString}`
+  );
+  const characters = await res.json();
+  return characters.results;
+};
+
 export const getCharactersById = async (id: number) => {
   const res = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
   const character = await res.json();

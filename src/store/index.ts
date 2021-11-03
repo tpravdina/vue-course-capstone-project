@@ -1,5 +1,8 @@
 import { createStore } from "vuex";
-import { getAllCharacters } from "../services/CharacterService";
+import {
+  getAllCharacters,
+  fetchCharactersByQuery,
+} from "../services/CharacterService";
 import {
   getLocalFavouritesIds,
   updateLocalFavouritesIds,
@@ -31,6 +34,10 @@ export default createStore({
   actions: {
     async fetchCharacters(ctx): Promise<void> {
       const characters = await getAllCharacters();
+      ctx.commit("UPDATE_CHARACTERS", characters);
+    },
+    async getCharactersByQuery(ctx, queryString): Promise<void> {
+      const characters = await fetchCharactersByQuery(queryString);
       ctx.commit("UPDATE_CHARACTERS", characters);
     },
   },

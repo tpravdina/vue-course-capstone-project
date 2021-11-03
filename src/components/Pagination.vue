@@ -1,0 +1,28 @@
+<template>
+  <router-link
+    :to="{
+      name: 'Characters',
+      query: { ...this.$route.query, page: page - 1 },
+    }"
+    rel="prev"
+    v-if="page != 1"
+    >Prev Page</router-link
+  >
+
+  <router-link
+    :to="{
+      name: 'Characters',
+      query: { ...this.$route.query, page: page + 1 },
+    }"
+    rel="next"
+    >Next Page</router-link
+  >
+</template>
+
+<script>
+import { defineComponent } from "@vue/composition-api";
+
+export default defineComponent({
+  props: ["page"],
+});
+</script>

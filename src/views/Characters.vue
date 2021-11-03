@@ -1,31 +1,32 @@
 <template>
-  <router-link
-    v-for="character in characters"
-    :key="character.id"
-    class="router-link"
-    :to="{ name: 'CharacterDetails', params: { id: character.id } }"
-  >
-    <CharacterCard
-      :id="character.id"
-      :img="character.image"
-      :name="character.name"
-      :species="character.species"
-      :status="character.status"
-      :location="character.location.name"
-      :episode="character.episode"
-      orientation="vertical"
-    />
-  </router-link>
+  <FilterBar />
+  <CharacterList :characters="characters" />
+  <Pagination :page="this.page" />
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, watchEffect } from "vue";
 import { mapGetters } from "vuex";
-import CharacterCard from "../components/CharacterCard.vue";
+import CharacterList from "../components/CharacterList.vue";
+import Pagination from "../components/Pagination.vue";
+import FilterBar from "../components/FilterBar.vue";
+import { mapActions } from "vuex";
+
 export default defineComponent({
   name: "Characters",
-  components: { CharacterCard },
+  props: ["page", "species"],
+  components: { FilterBar, CharacterList, Pagination },
   computed: mapGetters(["characters"]),
+  created() {
+    watchEffect(() => {
+      this.getCharactersByQuery(
+        "?page=" + this.page + "&species=" + this.species
+      );
+    });
+  },
+  methods: {
+    ...mapActions(["getCharactersByQuery"]),
+  },
 });
 </script>
 

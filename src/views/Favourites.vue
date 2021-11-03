@@ -1,31 +1,43 @@
 <template>
-  <router-link
-    v-for="character in favouriteCharacters"
-    :key="character.id"
-    class="router-link"
-    :to="{ name: 'CharacterDetails', params: { id: character.id } }"
-  >
-    <CharacterCard
-      :id="character.id"
-      :img="character.image"
-      :name="character.name"
-      :species="character.species"
-      :status="character.status"
-      :location="character.location.name"
-      :episode="character.episode"
-      orientation="vertical"
-    />
-  </router-link>
+  {{ this.test }}
+  <hr />
+  ID
+  {{ this.id }}
+  <CharacterList :characters="favouriteCharacters" />
 </template>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, watchEffect } from "vue";
 import { mapGetters } from "vuex";
-import CharacterCard from "../components/CharacterCard.vue";
+import CharacterList from "../components/CharacterList.vue";
+import { getFavouriteCharacters } from "../services/CharacterService";
 export default defineComponent({
   name: "Favourites",
-  components: { CharacterCard },
-  computed: mapGetters(["favouriteCharacters"]),
+  components: { CharacterList },
+  data() {
+    return {
+      test: "test str",
+    };
+  },
+  computed: {
+    ...mapGetters(["favouriteCharacters", "favouriteCharactersIds"]),
+    id: function () {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
+      return this.favouriteCharactersIds;
+    },
+  },
+  created() {
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    // watchEffect(async () => {
+    //   this.test = await getFavouriteCharacters();
+    // });
+    // this.test = await getFavouriteCharacters();
+    // console.log(this.favouriteCharactersIds);
+    // console.log("Test", this.test);
+  },
+  // computed: mapGetters(["favouriteCharacters", "favouriteCharactersIds"]),
 });
 </script>
 

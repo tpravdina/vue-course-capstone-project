@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters } from "vuex";
+import { mapMutations, mapGetters, mapActions } from "vuex";
 import { getFirstEpisodeNumber } from "../functions/getFirstEpisodeNumber";
 export default {
   name: "CharacterCard",
@@ -47,10 +47,12 @@ export default {
   },
   methods: {
     ...mapMutations(["PUSH_FAVOURITE_CHARACTER_ID"]),
+    ...mapActions(["getFavouriteCaracters"]),
     handleClick(e) {
       e.stopPropagation();
       if (!this.isFavourite(this.id)) {
         this.$store.commit("PUSH_FAVOURITE_CHARACTER_ID", this.id);
+        // this.$store.dispatch("")
       } else {
         this.$store.commit("DELETE_FAVOURITE_CHARACTER_ID", this.id);
       }
@@ -61,7 +63,7 @@ export default {
 
 <style lang="scss">
 .CharacterCard {
-  width: fit-content;
+  // width: fit-content;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
