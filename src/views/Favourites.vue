@@ -1,43 +1,32 @@
 <template>
-  {{ this.test }}
-  <hr />
-  ID
-  {{ this.id }}
-  <CharacterList :characters="favouriteCharacters" />
+  <CharacterList :characters="this.favouriteCharacters" />
 </template>
 
 <script lang="ts">
 import { defineComponent, watchEffect } from "vue";
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import CharacterList from "../components/CharacterList.vue";
-import { getFavouriteCharacters } from "../services/CharacterService";
 export default defineComponent({
   name: "Favourites",
   components: { CharacterList },
   data() {
     return {
-      test: "test str",
+      favouriteCharacters: [],
     };
   },
   computed: {
-    ...mapGetters(["favouriteCharacters", "favouriteCharactersIds"]),
-    id: function () {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
-      return this.favouriteCharactersIds;
-    },
+    ...mapGetters(["favouriteCharactersIds"]),
   },
-  created() {
+  methods: {
+    ...mapActions(["getFavouriteCharacters"]),
+  },
+  async created() {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-ignore
-    // watchEffect(async () => {
-    //   this.test = await getFavouriteCharacters();
-    // });
-    // this.test = await getFavouriteCharacters();
-    // console.log(this.favouriteCharactersIds);
-    // console.log("Test", this.test);
+    // @ts-ignore
+    this.favouriteCharacters = await this.getFavouriteCharacters(
+      this.favouriteCharactersIds
+    );
   },
-  // computed: mapGetters(["favouriteCharacters", "favouriteCharactersIds"]),
 });
 </script>
 

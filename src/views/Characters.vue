@@ -23,9 +23,10 @@ export default defineComponent({
         "?page=" + this.page + "&species=" + this.species
       );
     });
+    // this.getFavouritesCharacters(); //!!!!!!!!!!!!!
   },
   methods: {
-    ...mapActions(["getCharactersByQuery"]),
+    ...mapActions(["getCharactersByQuery", "getFavouritesCharacters"]),
   },
 });
 </script>

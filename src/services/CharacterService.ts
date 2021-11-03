@@ -26,6 +26,14 @@ export const fetchCharactersByQuery = async (queryString: string) => {
   return characters.results;
 };
 
+export const fetchMultipleCharacters = async (queryArray: number[]) => {
+  const res = await fetch(
+    `https://rickandmortyapi.com/api/character/${queryArray.join(",")}`
+  );
+  const characters = await res.json();
+  return characters;
+};
+
 export const getCharactersById = async (id: number) => {
   const res = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
   const character = await res.json();

@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 import {
   getAllCharacters,
   fetchCharactersByQuery,
+  fetchMultipleCharacters,
 } from "../services/CharacterService";
 import {
   getLocalFavouritesIds,
@@ -40,6 +41,9 @@ export default createStore({
       const characters = await fetchCharactersByQuery(queryString);
       ctx.commit("UPDATE_CHARACTERS", characters);
     },
+    async getFavouriteCharacters(ctx, idArray): Promise<void> {
+      return await fetchMultipleCharacters(idArray);
+    },
   },
   getters: {
     characters(state) {
@@ -48,11 +52,15 @@ export default createStore({
     favouriteCharactersIds(state) {
       return state.favouriteCharactersIds;
     },
-    favouriteCharacters(state) {
-      return state.favouriteCharactersIds.map((id: number) =>
-        state.characters.find((elem: CharacterType) => elem.id === id)
-      );
-    },
+    // рабочий геттер - не удалять!
+    // favouriteCharacters(state) {
+    //   return state.favouriteCharactersIds.map((id: number) =>
+    //     state.characters.find((elem: CharacterType) => elem.id === id)
+    //   );
+    // },
+    // favouriteCharacters(state) {
+    //   return state.favouriteCharacters;
+    // },
     isFavourite: (state) => (id: number) => {
       return state.favouriteCharactersIds.includes(id);
     },

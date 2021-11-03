@@ -47,12 +47,11 @@ export default {
   },
   methods: {
     ...mapMutations(["PUSH_FAVOURITE_CHARACTER_ID"]),
-    ...mapActions(["getFavouriteCaracters"]),
+    ...mapActions(["getFavouriteCharacters", "addFavouriteCharacter"]),
     handleClick(e) {
       e.stopPropagation();
       if (!this.isFavourite(this.id)) {
         this.$store.commit("PUSH_FAVOURITE_CHARACTER_ID", this.id);
-        // this.$store.dispatch("")
       } else {
         this.$store.commit("DELETE_FAVOURITE_CHARACTER_ID", this.id);
       }
