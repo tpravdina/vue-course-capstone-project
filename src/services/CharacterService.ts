@@ -4,6 +4,7 @@ export const getAllCharacters = async () => {
   return characters.results;
 };
 
+import { sortCharactersByIds } from "../functions/sortCharactersByIds";
 import { getLocalFavouritesIds } from "./LocalStorage";
 export const getFavouriteCharacters = async () => {
   if (getLocalFavouritesIds().length !== 0) {
@@ -33,7 +34,8 @@ export const fetchMultipleCharacters = async (queryArray: number[]) => {
     `https://rickandmortyapi.com/api/character/${queryArray.join(",")}`
   );
   const characters = await res.json();
-  return characters;
+  const sortedCharacters = sortCharactersByIds(characters, queryArray);
+  return sortedCharacters;
 };
 
 export const getCharactersById = async (id: number) => {

@@ -8,7 +8,7 @@ import {
   getLocalFavouritesIds,
   updateLocalFavouritesIds,
 } from "../services/LocalStorage";
-
+import { CharacterType } from "../types";
 export default createStore({
   state: {
     characters: [],
@@ -52,7 +52,12 @@ export default createStore({
       ctx.commit("UPDATE_CHARACTERS", response.results);
       ctx.commit("UPDATE_TOTAL_PAGE_NUMBER", response.info.pages);
     },
-    async getFavouriteCharacters(ctx, idArray): Promise<void> {
+    async getFavouriteCharacters(
+      ctx,
+      idArray
+    ): Promise<<CharacterType>() => []> {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      //@ts-ignore
       return await fetchMultipleCharacters(idArray);
     },
   },
