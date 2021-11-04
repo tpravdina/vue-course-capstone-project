@@ -1,5 +1,6 @@
 <template>
   <FilterBar />
+  <NameFilter />
   <CharacterList :characters="characters" />
   <Pagination :page="this.page" />
 </template>
@@ -10,12 +11,13 @@ import { mapGetters } from "vuex";
 import CharacterList from "../components/CharacterList.vue";
 import Pagination from "../components/Pagination.vue";
 import FilterBar from "../components/FilterBar.vue";
+import NameFilter from "../components/NameFilter.vue";
 import { mapActions } from "vuex";
 
 export default defineComponent({
   name: "Characters",
   props: ["page", "species"],
-  components: { FilterBar, CharacterList, Pagination },
+  components: { FilterBar, CharacterList, Pagination, NameFilter },
   computed: mapGetters(["characters"]),
   created() {
     watchEffect(() => {
@@ -23,7 +25,6 @@ export default defineComponent({
         "?page=" + this.page + "&species=" + this.species
       );
     });
-    // this.getFavouritesCharacters(); //!!!!!!!!!!!!!
   },
   methods: {
     ...mapActions(["getCharactersByQuery", "getFavouritesCharacters"]),

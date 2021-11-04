@@ -1,5 +1,6 @@
 <template>
-  <CharacterList :characters="this.favouriteCharacters" />
+  <div v-if="this.favouritesCount === 0"><b>No cards</b></div>
+  <CharacterList v-else :characters="this.favouriteCharacters" />
 </template>
 
 <script lang="ts">
@@ -16,7 +17,7 @@ export default defineComponent({
     };
   },
   computed: {
-    ...mapGetters(["favouriteCharactersIds"]),
+    ...mapGetters(["favouriteCharactersIds", "favouritesCount"]),
   },
   methods: {
     ...mapActions(["getFavouriteCharacters"]),
