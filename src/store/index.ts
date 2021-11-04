@@ -8,14 +8,17 @@ import {
   getLocalFavouritesIds,
   updateLocalFavouritesIds,
 } from "../services/LocalStorage";
-import { CharacterType } from "../types";
 
 export default createStore({
   state: {
     characters: [],
     favouriteCharactersIds: getLocalFavouritesIds(),
+    totalPageNumber: 0,
   },
   mutations: {
+    UPDATE_TOTAL_PAGE_NUMBER(state, totalPageNumber): void {
+      state.totalPageNumber = totalPageNumber;
+    },
     UPDATE_CHARACTERS(state, characters): void {
       state.characters = characters;
     },
@@ -37,10 +40,19 @@ export default createStore({
       const characters = await getAllCharacters();
       ctx.commit("UPDATE_CHARACTERS", characters);
     },
+    // async getCharactersByQuery(ctx, queryString): Promise<void> {
+    //   const characters = await fetchCharactersByQuery(queryString);
+    //   ctx.commit("UPDATE_CHARACTERS", characters);
+    // },
     async getCharactersByQuery(ctx, queryString): Promise<void> {
-      const characters = await fetchCharactersByQuery(queryString);
-      ctx.commit("UPDATE_CHARACTERS", characters);
+      const response = await fetchCharactersByQuery(queryString);
+      ctx.commit("UPDATE_CHARACTERS", response.results);
+      ctx.commit("UPDATE_TOTAL_PAGE_NUMBER", response.info.pages);
     },
+    // async getTotalPageNumber(ctx, queryString): Promise<void> {
+    //   const characters = await fetchCharactersByQuery2(queryString);
+    //   ctx.commit("UPDATE_CHARACTERS", characters);
+    // },
     async getFavouriteCharacters(ctx, idArray): Promise<void> {
       return await fetchMultipleCharacters(idArray);
     },
@@ -48,6 +60,9 @@ export default createStore({
   getters: {
     characters(state) {
       return state.characters;
+    },
+    totalPageNumber(state) {
+      return state.totalPageNumber;
     },
     favouriteCharactersIds(state) {
       return state.favouriteCharactersIds;

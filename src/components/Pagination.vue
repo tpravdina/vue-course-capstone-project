@@ -9,13 +9,13 @@
     v-if="page != 1"
     >Prev Page</router-link
   >
-
   <router-link
     :to="{
       name: 'Characters',
       query: { ...this.$route.query, page: page + 1 },
     }"
     rel="next"
+    v-if="page !== totalPageNumber"
     >Next Page</router-link
   >
 </template>

@@ -22,9 +22,7 @@ export const fetchCharactersByQuery = async (queryString: string) => {
   const res = await fetch(
     `https://rickandmortyapi.com/api/character/${queryString}`
   );
-  const characters = await res.json();
-  console.log(characters.info.pages);
-  return characters.results;
+  return await res.json();
 };
 
 export const fetchMultipleCharacters = async (queryArray: number[]) => {

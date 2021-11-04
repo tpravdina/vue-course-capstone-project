@@ -16,14 +16,11 @@ import { mapActions } from "vuex";
 
 export default defineComponent({
   name: "Characters",
-  data() {
-    return {
-      totalPageNumber: 0,
-    };
-  },
   props: ["page", "species", "name"],
   components: { FilterBar, CharacterList, Pagination, NameFilter },
-  computed: mapGetters(["characters"]),
+  computed: {
+    ...mapGetters(["characters", "totalPageNumber"]),
+  },
   created() {
     watchEffect(() => {
       this.getCharactersByQuery(
