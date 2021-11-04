@@ -1,42 +1,70 @@
 <template>
   <div class="species-container">
     <router-link
+      v-for="speciesFilterItem in speciesFilterItems"
+      :key="speciesFilterItem.text"
       :to="{
         name: 'Characters',
-        query: { ...this.$route.query, species: '', page: 1 },
+        query: {
+          ...this.$route.query,
+          species: speciesFilterItem.value,
+          page: 1,
+        },
       }"
-      >All</router-link
-    >
-    <router-link
-      :to="{
-        name: 'Characters',
-        query: { ...this.$route.query, species: 'Human', page: 1 },
-      }"
-      >Human</router-link
-    >
-    <router-link
-      :to="{
-        name: 'Characters',
-        query: { ...this.$route.query, species: 'Animal', page: 1 },
-      }"
-      >Animal</router-link
-    >
-    <router-link
-      :to="{
-        name: 'Characters',
-        query: { ...this.$route.query, species: 'Alien', page: 1 },
-      }"
-      >Alien</router-link
+      :class="{ active: speciesFilterItem.text === activeItem, link: true }"
+      @click="changeActiveItem(speciesFilterItem.text)"
+      >{{ speciesFilterItem.text }}</router-link
     >
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {
+      activeItem: "All",
+      speciesFilterItems: [
+        {
+          text: "All",
+          value: "",
+        },
+        {
+          text: "Human",
+          value: "Human",
+        },
+        {
+          text: "Animal",
+          value: "Animal",
+        },
+        {
+          text: "Alien",
+          value: "Alien",
+        },
+      ],
+    };
+  },
+  methods: {
+    changeActiveItem(newActiveItem) {
+      this.activeItem = newActiveItem;
+    },
+  },
+};
+</script>
+
 <style lang="scss">
 .species-container {
-  width: 40%; //
+  width: 20%; //
   margin-left: 100px; //
   margin-bottom: 30px;
   display: flex;
   justify-content: space-between;
+}
+.link {
+  text-decoration: none;
+  background-color: darksalmon;
+}
+.active {
+  color: white;
+  background-color: black;
 }
 </style>

@@ -1,22 +1,15 @@
 <template>
   <div class="filter-bar">
     <SpeciesFilter />
+    <NameFilter />
   </div>
 </template>
 
 <script>
 import SpeciesFilter from "./SpeciesFilter.vue";
+import NameFilter from "./NameFilter.vue";
 export default {
   name: "FilterBar",
-  components: { SpeciesFilter },
+  components: { SpeciesFilter, NameFilter },
 };
 </script>
-
-<style lang="scss">
-// .filter-bar {
-//   position: fixed;
-//   top: 50px;
-//   width: 100%;
-//   background: white;
-// }
-</style>

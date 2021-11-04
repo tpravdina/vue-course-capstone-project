@@ -36,23 +36,22 @@ export default createStore({
     },
   },
   actions: {
+    addFavouriteCharacter(ctx, id) {
+      ctx.commit("PUSH_FAVOURITE_CHARACTER_ID", id);
+    },
+    deleteFavouriteCharacter(ctx, id) {
+      ctx.commit("DELETE_FAVOURITE_CHARACTER_ID", id);
+    },
     async fetchCharacters(ctx): Promise<void> {
       const characters = await getAllCharacters();
       ctx.commit("UPDATE_CHARACTERS", characters);
     },
-    // async getCharactersByQuery(ctx, queryString): Promise<void> {
-    //   const characters = await fetchCharactersByQuery(queryString);
-    //   ctx.commit("UPDATE_CHARACTERS", characters);
-    // },
     async getCharactersByQuery(ctx, queryString): Promise<void> {
+      console.log("getCharactersByQuery");
       const response = await fetchCharactersByQuery(queryString);
       ctx.commit("UPDATE_CHARACTERS", response.results);
       ctx.commit("UPDATE_TOTAL_PAGE_NUMBER", response.info.pages);
     },
-    // async getTotalPageNumber(ctx, queryString): Promise<void> {
-    //   const characters = await fetchCharactersByQuery2(queryString);
-    //   ctx.commit("UPDATE_CHARACTERS", characters);
-    // },
     async getFavouriteCharacters(ctx, idArray): Promise<void> {
       return await fetchMultipleCharacters(idArray);
     },

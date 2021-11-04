@@ -2,10 +2,6 @@
   <div :class="`CharacterCard CharacterCard--${this.orientation}`">
     <img class="CharacterCard__img" :src="this.img" alt="" />
     <div class="CharacterCard__description">
-      <!--  -->
-      <div>{{ isFavourite(this.id) }}</div>
-      <hr />
-      <!--  -->
       <div class="CharacterCard__name">{{ this.name }}</div>
       <div class="CharacterCard__species-status">
         {{ this.species }}-{{ this.status }}
@@ -25,8 +21,9 @@
 </template>
 
 <script>
-import { mapMutations, mapGetters, mapActions } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import { getFirstEpisodeNumber } from "../functions/getFirstEpisodeNumber";
+
 export default {
   name: "CharacterCard",
   props: [
@@ -46,14 +43,12 @@ export default {
     },
   },
   methods: {
-    ...mapMutations(["PUSH_FAVOURITE_CHARACTER_ID"]),
-    ...mapActions(["getFavouriteCharacters", "addFavouriteCharacter"]),
+    ...mapActions(["addFavouriteCharacter", "deleteFavouriteCharacter"]),
     handleClick(e) {
-      e.stopPropagation();
       if (!this.isFavourite(this.id)) {
-        this.$store.commit("PUSH_FAVOURITE_CHARACTER_ID", this.id);
+        this.addFavouriteCharacter(this.id);
       } else {
-        this.$store.commit("DELETE_FAVOURITE_CHARACTER_ID", this.id);
+        this.deleteFavouriteCharacter(this.id);
       }
     },
   },
@@ -62,7 +57,6 @@ export default {
 
 <style lang="scss">
 .CharacterCard {
-  // width: fit-content;
   border: 1px solid black;
   display: flex;
   flex-direction: column;

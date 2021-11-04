@@ -8,8 +8,6 @@ const routes: Array<RouteRecordRaw> = [
     path: "/",
     name: "Characters",
     component: Characters,
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    //@ts-ignore
     props: (route) => ({
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       //@ts-ignore
