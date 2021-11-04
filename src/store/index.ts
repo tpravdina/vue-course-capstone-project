@@ -1,14 +1,9 @@
 import { createStore } from "vuex";
-import {
-  getAllCharacters,
-  fetchCharactersByQuery,
-  fetchMultipleCharacters,
-} from "../services/CharacterService";
+import { fetchCharactersByQuery } from "../services/CharacterService";
 import {
   getLocalFavouritesIds,
   updateLocalFavouritesIds,
 } from "../services/LocalStorage";
-import { CharacterType } from "../types";
 export default createStore({
   state: {
     characters: [],
@@ -42,23 +37,10 @@ export default createStore({
     deleteFavouriteCharacter(ctx, id) {
       ctx.commit("DELETE_FAVOURITE_CHARACTER_ID", id);
     },
-    async fetchCharacters(ctx): Promise<void> {
-      const characters = await getAllCharacters();
-      ctx.commit("UPDATE_CHARACTERS", characters);
-    },
     async getCharactersByQuery(ctx, queryString): Promise<void> {
-      console.log("getCharactersByQuery");
       const response = await fetchCharactersByQuery(queryString);
       ctx.commit("UPDATE_CHARACTERS", response.results);
       ctx.commit("UPDATE_TOTAL_PAGE_NUMBER", response.info.pages);
-    },
-    async getFavouriteCharacters(
-      ctx,
-      idArray
-    ): Promise<<CharacterType>() => []> {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
-      return await fetchMultipleCharacters(idArray);
     },
   },
   getters: {

@@ -24,7 +24,10 @@ export default defineComponent({
     handleSearch() {
       this.$router.push({
         name: "Characters",
-        query: { ...this.$route.query, name: this.name },
+        query: {
+          ...this.$route.query,
+          name: this.name,
+        },
       });
     },
   },
