@@ -1,4 +1,5 @@
 <template>
+  Page {{ this.page }} from {{ this.totalPageNumber }}
   <router-link
     :to="{
       name: 'Characters',
@@ -23,6 +24,6 @@
 import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
-  props: ["page"],
+  props: ["page", "totalPageNumber"],
 });
 </script>

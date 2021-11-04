@@ -52,15 +52,6 @@ export default createStore({
     favouriteCharactersIds(state) {
       return state.favouriteCharactersIds;
     },
-    // рабочий геттер - не удалять!
-    // favouriteCharacters(state) {
-    //   return state.favouriteCharactersIds.map((id: number) =>
-    //     state.characters.find((elem: CharacterType) => elem.id === id)
-    //   );
-    // },
-    // favouriteCharacters(state) {
-    //   return state.favouriteCharacters;
-    // },
     isFavourite: (state) => (id: number) => {
       return state.favouriteCharactersIds.includes(id);
     },

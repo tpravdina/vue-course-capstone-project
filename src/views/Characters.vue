@@ -2,7 +2,7 @@
   <FilterBar />
   <NameFilter />
   <CharacterList :characters="characters" />
-  <Pagination :page="this.page" />
+  <Pagination :page="this.page" :totalPageNumber="this.totalPageNumber" />
 </template>
 
 <script lang="ts">
@@ -16,13 +16,18 @@ import { mapActions } from "vuex";
 
 export default defineComponent({
   name: "Characters",
-  props: ["page", "species"],
+  data() {
+    return {
+      totalPageNumber: 0,
+    };
+  },
+  props: ["page", "species", "name"],
   components: { FilterBar, CharacterList, Pagination, NameFilter },
   computed: mapGetters(["characters"]),
   created() {
     watchEffect(() => {
       this.getCharactersByQuery(
-        "?page=" + this.page + "&species=" + this.species
+        "?page=" + this.page + "&species=" + this.species + "&name=" + this.name
       );
     });
   },
