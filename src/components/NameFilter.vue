@@ -1,14 +1,12 @@
 <template>
   <div class="name-filter-container">
-    <input v-model="name" type="text" placeholder="Search by name..." />
-    <router-link
-      :to="{
-        name: 'Characters',
-        query: { ...this.$route.query, name: this.name },
-      }"
-      @click="handleClick"
-      >Search</router-link
-    >
+    <input
+      v-model="name"
+      @keyup.enter="handleSearch"
+      type="text"
+      placeholder="Search by name..."
+    />
+    <button @click="handleSearch">Search</button>
   </div>
 </template>
 
@@ -21,6 +19,14 @@ export default defineComponent({
     return {
       name: "",
     };
+  },
+  methods: {
+    handleSearch() {
+      this.$router.push({
+        name: "Characters",
+        query: { ...this.$route.query, name: this.name },
+      });
+    },
   },
 });
 </script>
