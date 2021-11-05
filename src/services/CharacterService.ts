@@ -1,14 +1,17 @@
 import { sortCharactersByIds } from "../functions/sortCharactersByIds";
-import { CharacterType } from "../types";
+import { CharacterType } from "../types/CharacterType";
+import { ResponseType } from "../types/ResponseType";
 
-export const fetchCharactersByQuery = async (queryString: string) => {
+export const fetchCharactersByQuery = async (
+  queryString: string
+): Promise<ResponseType> => {
   const res = await fetch(
     `https://rickandmortyapi.com/api/character/${queryString}`
   );
   return await res.json();
 };
 
-export const getCharactersById = async (id: number) => {
+export const getCharactersById = async (id: number): Promise<CharacterType> => {
   const res = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
   const character = await res.json();
   return character;

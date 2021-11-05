@@ -8,7 +8,7 @@ import { defineComponent, watchEffect } from "vue";
 import { mapGetters } from "vuex";
 import CharacterList from "../components/CharacterList.vue";
 import { getMultipleCharacters } from "../services/CharacterService";
-import { CharacterType } from "../types";
+import { CharacterType } from "../types/CharacterType";
 
 export default defineComponent({
   name: "Favourites",

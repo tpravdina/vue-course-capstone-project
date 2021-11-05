@@ -10,18 +10,18 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
   name: "NameFilter",
-  data: function () {
+  data() {
     return {
       name: "",
     };
   },
   methods: {
-    handleSearch() {
+    handleSearch(): void {
       this.$router.push({
         name: "Characters",
         query: {

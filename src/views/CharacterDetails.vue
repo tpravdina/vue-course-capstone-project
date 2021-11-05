@@ -11,21 +11,26 @@
   />
 </template>
 
-<script>
+<script lang="ts">
 import CharacterCard from "../components/CharacterCard.vue";
 import { getCharactersById } from "../services/CharacterService";
+import { CharacterType } from "../types/CharacterType";
 
+interface DataType {
+  character: CharacterType;
+  id: number;
+}
 export default {
   name: "CharacterDetails",
   components: { CharacterCard },
-  data() {
+  data(): DataType {
     return {
-      character: {},
-      id: 0,
+      character: {} as CharacterType,
+      id: 0 as number,
     };
   },
-  async created() {
-    this.id = this.$route.params.id;
+  async created(): Promise<void> {
+    this.id = Number(this.$route.params.id);
     this.character = await getCharactersById(this.id);
   },
 };

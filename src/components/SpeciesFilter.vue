@@ -18,9 +18,16 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+interface DataType {
+  activeItem: string;
+  speciesFilterItems: {
+    text: string;
+    value: string;
+  }[];
+}
 export default {
-  data() {
+  data(): DataType {
     return {
       activeItem: "All",
       speciesFilterItems: [
@@ -44,7 +51,7 @@ export default {
     };
   },
   methods: {
-    changeActiveItem(newActiveItem) {
+    changeActiveItem(newActiveItem: string): void {
       this.activeItem = newActiveItem;
     },
   },

@@ -9,9 +9,7 @@ const routes: Array<RouteRecordRaw> = [
     name: "Characters",
     component: Characters,
     props: (route) => ({
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
-      page: parseInt(route.query.page) || 1,
+      page: Number(route.query.page) || 1,
       species: route.query.species || "",
       name: route.query.name || "",
     }),

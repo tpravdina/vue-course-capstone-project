@@ -1,14 +1,20 @@
-import { CharacterType } from "../types";
+import { CharacterType } from "../types/CharacterType";
+
+interface Dictionary {
+  [key: number]: CharacterType;
+}
 
 export const sortCharactersByIds = (
   charactersArray: CharacterType[],
   idsArray: number[]
 ): CharacterType[] => {
-  const charactersObject: any = {};
-  charactersArray.forEach((elem) => (charactersObject[elem.id] = elem));
+  const charactersDictionary = {} as Dictionary;
+  charactersArray.forEach(
+    (elem: CharacterType) => (charactersDictionary[elem.id] = elem)
+  );
 
   const sortedCharactes = idsArray.map((id: number) => {
-    return charactersObject[id];
+    return charactersDictionary[id];
   });
   return sortedCharactes;
 };

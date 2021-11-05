@@ -20,7 +20,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import { mapGetters, mapActions } from "vuex";
 import { getFirstEpisodeNumber } from "../functions/getFirstEpisodeNumber";
 
@@ -38,13 +38,13 @@ export default {
   ],
   computed: {
     ...mapGetters(["isFavourite"]),
-    firstEpisodeNumber() {
+    firstEpisodeNumber(): number {
       return getFirstEpisodeNumber(this.episode);
     },
   },
   methods: {
     ...mapActions(["addFavouriteCharacter", "deleteFavouriteCharacter"]),
-    handleClick(e) {
+    handleClick(): void {
       if (!this.isFavourite(this.id)) {
         this.addFavouriteCharacter(this.id);
       } else {

@@ -4,12 +4,13 @@ import {
   getLocalFavouritesIds,
   updateLocalFavouritesIds,
 } from "../services/LocalStorage";
+import { CharacterType } from "../types/CharacterType";
 
 export default createStore({
   state: {
-    characters: [],
-    favouriteCharactersIds: getLocalFavouritesIds(),
-    totalPageNumber: 0,
+    characters: [] as CharacterType[],
+    favouriteCharactersIds: getLocalFavouritesIds() as number[],
+    totalPageNumber: 0 as number,
   },
   mutations: {
     UPDATE_TOTAL_PAGE_NUMBER(state, totalPageNumber): void {
@@ -32,10 +33,10 @@ export default createStore({
     },
   },
   actions: {
-    addFavouriteCharacter(ctx, id) {
+    addFavouriteCharacter(ctx, id): void {
       ctx.commit("PUSH_FAVOURITE_CHARACTER_ID", id);
     },
-    deleteFavouriteCharacter(ctx, id) {
+    deleteFavouriteCharacter(ctx, id): void {
       ctx.commit("DELETE_FAVOURITE_CHARACTER_ID", id);
     },
     async getCharactersByQuery(ctx, queryString): Promise<void> {
@@ -45,19 +46,21 @@ export default createStore({
     },
   },
   getters: {
-    characters(state) {
+    characters(state): CharacterType[] {
       return state.characters;
     },
-    totalPageNumber(state) {
+    totalPageNumber(state): number {
       return state.totalPageNumber;
     },
-    favouriteCharactersIds(state) {
+    favouriteCharactersIds(state): number[] {
       return state.favouriteCharactersIds;
     },
-    isFavourite: (state) => (id: number) => {
-      return state.favouriteCharactersIds.includes(id);
-    },
-    favouritesCount(state) {
+    isFavourite:
+      (state) =>
+      (id: number): boolean => {
+        return state.favouriteCharactersIds.includes(id);
+      },
+    favouritesCount(state): number {
       return state.favouriteCharactersIds.length;
     },
   },

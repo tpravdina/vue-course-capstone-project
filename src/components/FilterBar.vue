@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
 import SpeciesFilter from "./SpeciesFilter.vue";
 import NameFilter from "./NameFilter.vue";
 
