@@ -12,10 +12,11 @@
       <div class="CharacterCard__first-episode">
         First seen in: {{ this.firstEpisodeNumber }} episode
       </div>
-      <button @click.prevent="handleClick">
-        <div v-if="!isFavourite(this.id)">Add to Favourites</div>
-        <div v-else>Remove from Favourites</div>
-      </button>
+      <Button :onClick="handleClick" isNeedToPrevent="true">
+        {{
+          !isFavourite(this.id) ? "Add to Favourites" : "Remove from Favourites"
+        }}
+      </Button>
     </div>
   </div>
 </template>
@@ -23,7 +24,7 @@
 <script lang="ts">
 import { mapGetters, mapActions } from "vuex";
 import { getFirstEpisodeNumber } from "../functions/getFirstEpisodeNumber";
-
+import Button from "./Button.vue";
 export default {
   name: "CharacterCard",
   props: [
@@ -36,6 +37,7 @@ export default {
     "location",
     "episode",
   ],
+  components: { Button },
   computed: {
     ...mapGetters(["isFavourite"]),
     firstEpisodeNumber(): number {
@@ -54,37 +56,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.CharacterCard {
-  border: 1px solid black;
-  display: flex;
-  flex-direction: column;
-  &__img {
-    max-width: 300px;
-  }
-  &__description {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  &--vertical {
-    .CharacterCard__location,
-    .CharacterCard__first-episode {
-      display: none;
-    }
-  }
-  &--horizontal {
-    flex-direction: row;
-    width: 100%;
-    justify-content: space-between;
-    .CharacterCard__img {
-      order: 2;
-    }
-    .CharacterCard__location,
-    .CharacterCard__first-episode {
-      display: block;
-    }
-  }
-}
-</style>

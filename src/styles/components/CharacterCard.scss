@@ -1,0 +1,33 @@
+@import "../helpers/index.scss";
+
+.CharacterCard {
+  border: 1px solid $primary-text-color;
+  display: flex;
+  flex-direction: column;
+
+  &__description {
+    display: grid;
+    justify-items: start;
+    grid-row-gap: 1vmin;
+
+    padding: 2vmin;
+  }
+  &--vertical {
+    .CharacterCard__location,
+    .CharacterCard__first-episode {
+      display: none;
+    }
+  }
+  &--horizontal {
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    .CharacterCard__img {
+      order: 2;
+    }
+    .CharacterCard__location,
+    .CharacterCard__first-episode {
+      display: block;
+    }
+  }
+}

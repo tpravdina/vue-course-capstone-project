@@ -1,16 +1,26 @@
 <template>
-  <div class="navigation">
-    <router-link to="/">Characters</router-link> |
-    <router-link to="/favourites">Favourites</router-link>
-    <div>Favourites count: {{ this.favouritesCount }}</div>
+  <div class="Navigation">
+    <router-link
+      class="Navigation__link"
+      active-class="Navigation__link--active"
+      to="/"
+      >Characters</router-link
+    >
+    <router-link
+      class="Navigation__link"
+      active-class="Navigation__link--active"
+      to="/favourites"
+      >Favourites</router-link
+    >
+    <FavouriteCounter class="Navigation__favourite-count" />
   </div>
 </template>
 
 <script lang="ts">
-import { mapGetters } from "vuex";
+import FavouriteCounter from "./FavouriteCounter.vue";
 
 export default {
   name: "Navigation",
-  computed: mapGetters(["favouritesCount"]),
+  components: { FavouriteCounter },
 };
 </script>

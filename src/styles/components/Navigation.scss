@@ -1,0 +1,32 @@
+@import "../helpers/index.scss";
+
+.Navigation {
+  position: fixed;
+  top: 0;
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  grid-column-gap: 2vw;
+  align-items: center;
+
+  height: $navigation-height;
+  padding: 3vh 5vw;
+  color: $accent-text-color;
+  background-color: $accent-background-color;
+
+  &__link {
+    text-decoration: none;
+    color: $accent-inactive-color;
+    &--active {
+      color: $accent-text-color;
+    }
+    &:hover {
+      transition: $transition-time;
+      color: $accent-text-color;
+    }
+  }
+  &__favourite-count {
+    justify-self: end;
+  }
+}

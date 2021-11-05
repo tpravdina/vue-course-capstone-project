@@ -1,0 +1,14 @@
+@import "../helpers/index.scss";
+
+.FavouriteCounter {
+  display: flex;
+  align-items: center;
+  &__number {
+    margin-left: 10px;
+    color: $accent-inactive-color;
+  }
+  &__heart {
+    fill: $accent-inactive-color;
+    height: 24px;
+  }
+}

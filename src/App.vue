@@ -1,34 +1,18 @@
 <template>
   <Navigation />
-  <router-view />
+  <div class="RouterView"><router-view /></div>
+  <Button :onClick="handleClick"> Hello </Button>
 </template>
 
 <script>
 import Navigation from "./components/Navigation.vue";
+import Button from "./components/Button.vue";
 export default {
-  components: { Navigation },
+  components: { Navigation, Button },
+  methods: {
+    handleClick() {
+      alert("hello");
+    },
+  },
 };
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
