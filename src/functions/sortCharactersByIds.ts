@@ -3,7 +3,7 @@ import { CharacterType } from "../types";
 export const sortCharactersByIds = (
   charactersArray: CharacterType[],
   idsArray: number[]
-) => {
+): CharacterType[] => {
   const charactersObject: any = {};
   charactersArray.forEach((elem) => (charactersObject[elem.id] = elem));
 

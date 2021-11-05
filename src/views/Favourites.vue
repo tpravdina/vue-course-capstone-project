@@ -8,13 +8,14 @@ import { defineComponent, watchEffect } from "vue";
 import { mapGetters } from "vuex";
 import CharacterList from "../components/CharacterList.vue";
 import { getMultipleCharacters } from "../services/CharacterService";
+import { CharacterType } from "../types";
 
 export default defineComponent({
   name: "Favourites",
   components: { CharacterList },
   data() {
     return {
-      favouriteCharacters: [],
+      favouriteCharacters: [] as CharacterType[],
     };
   },
   computed: {
@@ -22,8 +23,6 @@ export default defineComponent({
   },
   created() {
     watchEffect(async () => {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      //@ts-ignore
       this.favouriteCharacters = await getMultipleCharacters(
         this.favouriteCharactersIds
       );

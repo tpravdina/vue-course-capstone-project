@@ -1,4 +1,5 @@
 import { sortCharactersByIds } from "../functions/sortCharactersByIds";
+import { CharacterType } from "../types";
 
 export const fetchCharactersByQuery = async (queryString: string) => {
   const res = await fetch(
@@ -13,7 +14,9 @@ export const getCharactersById = async (id: number) => {
   return character;
 };
 
-export const getMultipleCharacters = async (queryArray: number[]) => {
+export const getMultipleCharacters = async (
+  queryArray: number[]
+): Promise<CharacterType[]> => {
   if (queryArray.length === 1) {
     return [await getCharactersById(queryArray[0])];
   }
