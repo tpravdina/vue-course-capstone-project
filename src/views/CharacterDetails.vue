@@ -1,14 +1,16 @@
 <template>
-  <CharacterCard
-    :id="this.character.id"
-    :img="this.character.image"
-    :name="this.character.name"
-    :species="this.character.species"
-    :status="this.character.status"
-    :location="this.character.location.name"
-    :episode="this.character.episode"
-    orientation="horizontal"
-  />
+  <div class="CharacterDetails">
+    <CharacterCard
+      :id="this.character.id"
+      :img="this.character.image"
+      :name="this.character.name"
+      :species="this.character.species"
+      :status="this.character.status"
+      :location="this.character.location.name"
+      :episode="this.character.episode"
+      orientation="horizontal"
+    />
+  </div>
 </template>
 
 <script lang="ts">

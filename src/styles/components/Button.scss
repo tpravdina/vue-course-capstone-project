@@ -1,0 +1,14 @@
+@import "../helpers/index.scss";
+
+.Button {
+  padding: 2vmin;
+  background-color: $accent-background-color;
+  color: $accent-text-color;
+  border-radius: $border-radius;
+  cursor: pointer;
+  &:hover {
+    background-color: $secondary-background-color;
+    color: $secondary-text-color;
+    transition: $transition-time;
+  }
+}

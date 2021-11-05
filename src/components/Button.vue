@@ -1,8 +1,8 @@
 <template>
-  <button v-if="isNeedToPrevent" @click.prevent="this.onClick">
+  <button class="Button" v-if="isNeedToPrevent" @click.prevent="this.onClick">
     <slot></slot>
   </button>
-  <button v-else @click="this.onClick">
+  <button class="Button" v-else @click="this.onClick">
     <slot></slot>
   </button>
 </template>

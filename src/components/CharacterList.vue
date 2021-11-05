@@ -1,9 +1,8 @@
 <template>
-  <div class="card-container">
+  <div class="CharacterList">
     <router-link
       v-for="character in this.characters"
       :key="character.id"
-      class="router-link"
       :to="{ name: 'CharacterDetails', params: { id: character.id } }"
     >
       <CharacterCard
@@ -30,13 +29,3 @@ export default defineComponent({
   components: { CharacterCard },
 });
 </script>
-
-<style lang="scss">
-.card-container {
-  border: 1px solid red;
-  margin: 0 50px;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: 25px;
-}
-</style>

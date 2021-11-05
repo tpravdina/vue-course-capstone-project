@@ -30,10 +30,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style>
-.router-link {
-  text-decoration: none;
-  color: black;
-}
-</style>

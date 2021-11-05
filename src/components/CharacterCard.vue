@@ -12,7 +12,11 @@
       <div class="CharacterCard__first-episode">
         First seen in: {{ this.firstEpisodeNumber }} episode
       </div>
-      <Button :onClick="handleClick" isNeedToPrevent="true">
+      <Button
+        class="CharacterCard__button"
+        :onClick="handleClick"
+        isNeedToPrevent="true"
+      >
         {{
           !isFavourite(this.id) ? "Add to Favourites" : "Remove from Favourites"
         }}

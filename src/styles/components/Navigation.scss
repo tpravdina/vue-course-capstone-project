@@ -11,9 +11,9 @@
   align-items: center;
 
   height: $navigation-height;
-  padding: 3vh 5vw;
-  color: $accent-text-color;
+  padding: 3vh $horisontal-padding;
   background-color: $accent-background-color;
+  color: $accent-text-color;
 
   &__link {
     text-decoration: none;
@@ -23,7 +23,7 @@
     }
     &:hover {
       transition: $transition-time;
-      color: $accent-text-color;
+      color: $secondary-background-color;
     }
   }
   &__favourite-count {

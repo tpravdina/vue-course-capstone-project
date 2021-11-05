@@ -1,16 +1,25 @@
 @import "../helpers/index.scss";
 
 .CharacterCard {
-  border: 1px solid $primary-text-color;
+  overflow: hidden;
+  border-radius: $border-radius;
+  border: 1px solid $accent-inactive-color;
   display: flex;
   flex-direction: column;
+  &:hover {
+    box-shadow: 5px 5px 5px rgba(160, 182, 255, 0.4);
+    //!!!
+  }
 
   &__description {
     display: grid;
     justify-items: start;
-    grid-row-gap: 1vmin;
+    grid-row-gap: 2vmin;
 
     padding: 2vmin;
+  }
+  &__name {
+    font-weight: 500;
   }
   &--vertical {
     .CharacterCard__location,
