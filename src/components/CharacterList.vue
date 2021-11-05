@@ -23,6 +23,7 @@
 <script>
 import { defineComponent } from "@vue/composition-api";
 import CharacterCard from "./CharacterCard.vue";
+
 export default defineComponent({
   name: "CharacterList",
   props: ["characters"],

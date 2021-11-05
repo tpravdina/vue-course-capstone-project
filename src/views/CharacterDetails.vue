@@ -14,6 +14,7 @@
 <script>
 import CharacterCard from "../components/CharacterCard.vue";
 import { getCharactersById } from "../services/CharacterService";
+
 export default {
   name: "CharacterDetails",
   components: { CharacterCard },

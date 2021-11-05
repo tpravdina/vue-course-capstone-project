@@ -8,17 +8,9 @@
 
 <script>
 import { mapGetters } from "vuex";
+
 export default {
   name: "Navigation",
   computed: mapGetters(["favouritesCount"]),
 };
 </script>
-
-<style lang="scss">
-// .navigation {
-//   position: fixed;
-//   top: 0;
-//   width: 100%;
-//   background: white;
-// }
-</style>

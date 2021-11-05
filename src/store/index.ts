@@ -4,6 +4,7 @@ import {
   getLocalFavouritesIds,
   updateLocalFavouritesIds,
 } from "../services/LocalStorage";
+
 export default createStore({
   state: {
     characters: [],

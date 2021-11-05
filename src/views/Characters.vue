@@ -32,7 +32,7 @@ export default defineComponent({
     });
   },
   methods: {
-    ...mapActions(["getCharactersByQuery", "getFavouritesCharacters"]),
+    ...mapActions(["getCharactersByQuery"]),
   },
 });
 </script>
