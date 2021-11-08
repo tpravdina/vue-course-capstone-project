@@ -1,11 +1,11 @@
 <template>
-  <!-- <FilterBar /> -->
+  <FilterBar />
   <CharacterList v-if="characters" :characters="characters" />
-  <!-- <Pagination
+  <Pagination
     v-if="characters"
     :page="this.page"
     :totalPageNumber="this.totalPageNumber"
-  /> -->
+  />
   <div v-else>No characters found.</div>
 </template>
 
@@ -20,7 +20,7 @@ import { mapActions } from "vuex";
 export default defineComponent({
   name: "Characters",
   props: ["page", "species", "name"],
-  components: { CharacterList },
+  components: { CharacterList, Pagination, FilterBar },
   computed: {
     ...mapGetters(["characters", "totalPageNumber"]),
   },

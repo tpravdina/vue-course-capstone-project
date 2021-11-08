@@ -32,7 +32,9 @@ export default {
     };
   },
   async created(): Promise<void> {
+    //@ts-ignores
     this.id = Number(this.$route.params.id);
+    //@ts-ignore
     this.character = await getCharactersById(this.id);
   },
 };

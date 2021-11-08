@@ -45,15 +45,19 @@ export default {
   computed: {
     ...mapGetters(["isFavourite"]),
     firstEpisodeNumber(): number {
+      //@ts-ignore
       return getFirstEpisodeNumber(this.episode);
     },
   },
   methods: {
     ...mapActions(["addFavouriteCharacter", "deleteFavouriteCharacter"]),
     handleClick(): void {
+      //@ts-ignore
       if (!this.isFavourite(this.id)) {
+        //@ts-ignore
         this.addFavouriteCharacter(this.id);
       } else {
+        //@ts-ignore
         this.deleteFavouriteCharacter(this.id);
       }
     },

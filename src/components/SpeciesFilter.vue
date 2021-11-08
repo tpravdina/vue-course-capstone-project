@@ -52,6 +52,7 @@ export default {
   },
   methods: {
     changeActiveItem(newActiveItem: string): void {
+      //@ts-ignore
       this.activeItem = newActiveItem;
     },
   },
