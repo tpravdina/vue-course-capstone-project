@@ -1,6 +1,11 @@
 <template>
-  <div class="species-container">
+  <div class="SpeciesFilter">
     <router-link
+      :class="{
+        'SpeciesFilter__router-link': true,
+        'SpeciesFilter__router-link--active':
+          speciesFilterItem.value === activeItem,
+      }"
       v-for="speciesFilterItem in speciesFilterItems"
       :key="speciesFilterItem.text"
       :to="{
@@ -11,14 +16,22 @@
           page: 1,
         },
       }"
-      :class="{ active: speciesFilterItem.text === activeItem, link: true }"
-      @click="changeActiveItem(speciesFilterItem.text)"
-      >{{ speciesFilterItem.text }}</router-link
+      @click="changeActiveItem(speciesFilterItem.value)"
     >
+      <Button
+        class="SpeciesFilter__button Button--outlined"
+        :class="{
+          'SpeciesFilter__button Button--outlined': true,
+          active: speciesFilterItem.value === activeItem,
+        }"
+        >{{ speciesFilterItem.text }}</Button
+      >
+    </router-link>
   </div>
 </template>
 
 <script lang="ts">
+import Button from "./Button.vue";
 interface DataType {
   activeItem: string;
   speciesFilterItems: {
@@ -29,7 +42,7 @@ interface DataType {
 export default {
   data(): DataType {
     return {
-      activeItem: "All",
+      activeItem: "",
       speciesFilterItems: [
         {
           text: "All",
@@ -50,6 +63,7 @@ export default {
       ],
     };
   },
+  components: { Button },
   methods: {
     changeActiveItem(newActiveItem: string): void {
       //@ts-ignore
@@ -58,21 +72,3 @@ export default {
   },
 };
 </script>
-
-<style lang="scss">
-.species-container {
-  width: 20%; //
-  margin-left: 100px; //
-  margin-bottom: 30px;
-  display: flex;
-  justify-content: space-between;
-}
-.link {
-  text-decoration: none;
-  background-color: darksalmon;
-}
-.active {
-  color: white;
-  background-color: black;
-}
-</style>

@@ -1,0 +1,22 @@
+@import "../helpers/index.scss";
+
+.FilterBar {
+  position: sticky;
+  top: $navigation-height;
+  width: 100%;
+  z-index: 100;
+
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-gap: $grid-gap;
+
+  padding: $card-top-distance/2 $horisontal-padding;
+  background-color: $light-gray;
+
+  @media only screen and (max-width: $mobile-media-limit) {
+    padding: $card-top-distance $horisontal-padding;
+    top: $mobile-navigation-height;
+    grid-template-columns: 1fr;
+    justify-items: center;
+  }
+}

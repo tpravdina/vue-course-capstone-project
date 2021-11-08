@@ -3,7 +3,7 @@
 .CharacterList {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  grid-gap: 25px;
+  grid-gap: $grid-gap;
 
   padding: $card-top-distance $horisontal-padding;
 }

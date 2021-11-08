@@ -1,24 +1,31 @@
 <template>
-  <div class="name-filter-container">
+  <div class="NameFilter">
     <input
+      class="NameFilter__input"
       v-model="name"
+      @blur="handleSearch"
       @keyup.enter="handleSearch"
       type="text"
       placeholder="Search by name..."
     />
-    <button @click="handleSearch">Search</button>
+    <Button class="Button--outlined NameFilter__button" :onClick="handleSearch">
+      Search
+    </Button>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "@vue/composition-api";
-
+import Button from "./Button.vue";
 export default defineComponent({
   name: "NameFilter",
   data() {
     return {
       name: "",
     };
+  },
+  components: {
+    Button,
   },
   methods: {
     handleSearch(): void {
@@ -33,9 +40,3 @@ export default defineComponent({
   },
 });
 </script>
-
-<style lang="scss">
-.name-filter-container {
-  margin: 50px 0;
-}
-</style>

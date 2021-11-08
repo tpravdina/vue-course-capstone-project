@@ -1,0 +1,16 @@
+@import "../helpers/index.scss";
+
+.Footer {
+  display: grid;
+  place-items: center;
+
+  padding: $card-top-distance/2 $horisontal-padding;
+  background-color: $footer-color;
+  color: $white;
+  grid-gap: $grid-gap/2;
+  &__icon {
+    fill: $white;
+    height: 30px;
+    cursor: pointer;
+  }
+}

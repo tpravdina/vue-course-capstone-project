@@ -1,17 +1,21 @@
-$primary-background-color: white;
-$primary-text-color: black;
+// COLORS
+$primary-color: rgb(70, 70, 70);
+$accent-color: rgb(255, 130, 151);
+$white: white;
+$inactive-color: lightgray;
 
-$accent-background-color: black;
-$accent-text-color: white;
-$accent-inactive-color: lightgray;
-
-$secondary-background-color: pink;
-$secondary-text-color: black;
+$footer-color: lightgray;
+$light-gray: #f2f2f2;
+$input-border-color: #80878e;
 
 $border-radius: 8px;
 
-$navigation-height: 10vh;
+$navigation-height: 10vmin;
+$mobile-navigation-height: 15vmin;
 $horisontal-padding: 5vw;
 $card-top-distance: 5vmin;
+$grid-gap: 25px;
 
 $transition-time: 0.3s;
+
+$mobile-media-limit: 600px;

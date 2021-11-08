@@ -1,5 +1,5 @@
 <template>
-  <div v-if="this.favouritesCount === 0"><b>No cards</b></div>
+  <div class="no-massage" v-if="this.favouritesCount === 0">No cards</div>
   <CharacterList v-else :characters="this.favouriteCharacters" />
 </template>
 

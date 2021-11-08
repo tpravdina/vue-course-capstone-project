@@ -2,13 +2,21 @@
 
 .Button {
   padding: 2vmin;
-  background-color: $accent-background-color;
-  color: $accent-text-color;
+  background-color: $primary-color;
+  color: $white;
   border-radius: $border-radius;
   cursor: pointer;
   &:hover {
-    background-color: $secondary-background-color;
-    color: $secondary-text-color;
+    // background-color: $secondary-background-color;
+    color: $accent-color;
     transition: $transition-time;
+  }
+  &--outlined {
+    border: 1px solid $primary-color;
+    background-color: transparent;
+    color: $primary-color;
+    &:hover {
+      // background-color: $secondary-background-color;
+    }
   }
 }

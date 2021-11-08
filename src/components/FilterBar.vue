@@ -1,5 +1,5 @@
 <template>
-  <div class="filter-bar">
+  <div class="FilterBar">
     <SpeciesFilter />
     <NameFilter />
   </div>

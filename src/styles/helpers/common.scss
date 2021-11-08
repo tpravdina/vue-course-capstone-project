@@ -9,5 +9,18 @@
 }
 a {
   text-decoration: none;
-  color: $primary-text-color;
+  color: $primary-color;
+}
+.no-massage {
+  color: $input-border-color;
+  padding: $card-top-distance $horisontal-padding;
+  font-size: 1.5rem;
+  display: grid;
+  place-items: center;
+}
+
+#app {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-height: 100vh;
 }

@@ -1,23 +1,27 @@
 <template>
-  Page {{ this.page }} from {{ this.totalPageNumber }}
-  <router-link
-    :to="{
-      name: 'Characters',
-      query: { ...this.$route.query, page: page - 1 },
-    }"
-    rel="prev"
-    v-if="page != 1"
-    >Prev Page</router-link
-  >
-  <router-link
-    :to="{
-      name: 'Characters',
-      query: { ...this.$route.query, page: page + 1 },
-    }"
-    rel="next"
-    v-if="page !== totalPageNumber"
-    >Next Page</router-link
-  >
+  <div class="Pagination">
+    <div class="Pagination__page-info">
+      Page {{ this.page }} from {{ this.totalPageNumber }}
+    </div>
+    <div
+      :class="{
+        Pagination__arrow: true,
+        'Pagination__arrow--disable': this.isPrevDisable,
+      }"
+      @click="moveToPrevPage"
+    >
+      &lt;&lt; Prev
+    </div>
+    <div
+      :class="{
+        Pagination__arrow: true,
+        'Pagination__arrow--disable': this.isNextDisable,
+      }"
+      @click="moveToNextPage"
+    >
+      Next &gt;&gt;
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -25,5 +29,33 @@ import { defineComponent } from "@vue/composition-api";
 
 export default defineComponent({
   props: ["page", "totalPageNumber"],
+  computed: {
+    isPrevDisable(): boolean {
+      //@ts-ignore
+      return this.page === 1;
+    },
+    isNextDisable(): boolean {
+      //@ts-ignore
+      return this.page === this.totalPageNumber;
+    },
+  },
+  methods: {
+    moveToPrevPage() {
+      if (!this.isPrevDisable) {
+        this.$router.push({
+          name: "Characters",
+          query: { ...this.$route.query, page: this.page - 1 },
+        });
+      }
+    },
+    moveToNextPage() {
+      if (!this.isNextDisable) {
+        this.$router.push({
+          name: "Characters",
+          query: { ...this.$route.query, page: this.page + 1 },
+        });
+      }
+    },
+  },
 });
 </script>

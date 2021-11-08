@@ -1,0 +1,26 @@
+@import "../helpers/index.scss";
+
+.SpeciesFilter {
+  display: flex;
+  &__router-link {
+    &:first-child {
+      .Button {
+        border-radius: $border-radius 0 0 $border-radius;
+      }
+    }
+    &:last-child {
+      .Button {
+        border-radius: 0 $border-radius $border-radius 0;
+      }
+    }
+    &--active {
+      .Button {
+        background-color: $primary-color;
+        color: $white;
+      }
+    }
+  }
+  &__button {
+    border-radius: 0;
+  }
+}

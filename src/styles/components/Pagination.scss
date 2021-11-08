@@ -1,0 +1,27 @@
+@import "../helpers/index.scss";
+
+.Pagination {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  padding: $card-top-distance/2 $horisontal-padding;
+  grid-gap: $grid-gap;
+  &__page-info {
+    margin-right: $grid-gap;
+    justify-self: end;
+    cursor: default;
+  }
+  &__arrow {
+    color: $primary-color;
+    cursor: pointer;
+    &:hover {
+      color: $accent-color;
+    }
+    &--disable {
+      color: $input-border-color;
+      cursor: default;
+      &:hover {
+        color: $input-border-color;
+      }
+    }
+  }
+}

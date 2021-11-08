@@ -5,10 +5,11 @@
   align-items: center;
   &__number {
     margin-left: 10px;
-    color: $accent-inactive-color;
+    color: $inactive-color;
+    cursor: default;
   }
   &__heart {
-    fill: $accent-inactive-color;
+    fill: $inactive-color;
     height: 24px;
   }
 }

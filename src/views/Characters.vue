@@ -6,7 +6,7 @@
     :page="this.page"
     :totalPageNumber="this.totalPageNumber"
   />
-  <div v-else>No characters found.</div>
+  <div class="no-massage" v-else>No characters found</div>
 </template>
 
 <script lang="ts">

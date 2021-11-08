@@ -3,12 +3,13 @@
 .CharacterCard {
   overflow: hidden;
   border-radius: $border-radius;
-  border: 1px solid $accent-inactive-color;
+  border: 1px solid $inactive-color;
   display: flex;
   flex-direction: column;
   &:hover {
-    box-shadow: 5px 5px 5px rgba(160, 182, 255, 0.4);
-    //!!!
+    transition: 0.7 * $transition-time;
+    box-shadow: 0px 0px 7px rgba(160, 182, 255, 0.4);
+    transform: scale(1.01, 1.01);
   }
 
   &__description {
@@ -28,6 +29,11 @@
     }
   }
   &--horizontal {
+    &:hover {
+      transition: 0;
+      box-shadow: none;
+      transform: none;
+    }
     flex-direction: row;
     width: 100%;
     justify-content: space-between;
@@ -37,6 +43,9 @@
     .CharacterCard__location,
     .CharacterCard__first-episode {
       display: block;
+    }
+    .CharacterCard__name {
+      font-size: 3rem;
     }
   }
 }
