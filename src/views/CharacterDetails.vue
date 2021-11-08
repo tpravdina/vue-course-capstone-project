@@ -14,6 +14,7 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "@vue/composition-api";
 import CharacterCard from "../components/CharacterCard.vue";
 import { getCharactersById } from "../services/CharacterService";
 import { CharacterType } from "../types/CharacterType";
@@ -22,7 +23,7 @@ interface DataType {
   character: CharacterType;
   id: number;
 }
-export default {
+export default defineComponent({
   name: "CharacterDetails",
   components: { CharacterCard },
   data(): DataType {
@@ -32,10 +33,8 @@ export default {
     };
   },
   async created(): Promise<void> {
-    //@ts-ignores
     this.id = Number(this.$route.params.id);
-    //@ts-ignore
     this.character = await getCharactersById(this.id);
   },
-};
+});
 </script>

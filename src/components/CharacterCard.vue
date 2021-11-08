@@ -26,10 +26,12 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "@vue/composition-api";
 import { mapGetters, mapActions } from "vuex";
 import { getFirstEpisodeNumber } from "../functions/getFirstEpisodeNumber";
 import Button from "./Button.vue";
-export default {
+
+export default defineComponent({
   name: "CharacterCard",
   props: [
     "id",
@@ -45,22 +47,18 @@ export default {
   computed: {
     ...mapGetters(["isFavourite"]),
     firstEpisodeNumber(): number {
-      //@ts-ignore
       return getFirstEpisodeNumber(this.episode);
     },
   },
   methods: {
     ...mapActions(["addFavouriteCharacter", "deleteFavouriteCharacter"]),
     handleClick(): void {
-      //@ts-ignore
       if (!this.isFavourite(this.id)) {
-        //@ts-ignore
         this.addFavouriteCharacter(this.id);
       } else {
-        //@ts-ignore
         this.deleteFavouriteCharacter(this.id);
       }
     },
   },
-};
+});
 </script>

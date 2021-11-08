@@ -31,11 +31,9 @@ export default defineComponent({
   props: ["page", "totalPageNumber"],
   computed: {
     isPrevDisable(): boolean {
-      //@ts-ignore
       return this.page === 1;
     },
     isNextDisable(): boolean {
-      //@ts-ignore
       return this.page === this.totalPageNumber;
     },
   },

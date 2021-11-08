@@ -31,6 +31,7 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from "@vue/composition-api";
 import Button from "./Button.vue";
 interface DataType {
   activeItem: string;
@@ -39,7 +40,7 @@ interface DataType {
     value: string;
   }[];
 }
-export default {
+export default defineComponent({
   data(): DataType {
     return {
       activeItem: "",
@@ -66,9 +67,8 @@ export default {
   components: { Button },
   methods: {
     changeActiveItem(newActiveItem: string): void {
-      //@ts-ignore
       this.activeItem = newActiveItem;
     },
   },
-};
+});
 </script>
