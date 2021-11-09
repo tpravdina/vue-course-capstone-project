@@ -5,7 +5,7 @@ import CharacterDetails from "../views/CharacterDetails.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: "/",
+    path: "/index.html",
     name: "Characters",
     component: Characters,
     props: (route) => ({
@@ -27,7 +27,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+  history: createWebHistory(process.env.BASL),
   routes,
   scrollBehavior(to, from, savedPosition) {
     if (savedPosition) {

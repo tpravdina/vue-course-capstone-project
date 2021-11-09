@@ -3,7 +3,7 @@
     <router-link
       class="Navigation__link"
       active-class="Navigation__link--active"
-      to="/"
+      to="/index.html"
       >Characters</router-link
     >
     <router-link
