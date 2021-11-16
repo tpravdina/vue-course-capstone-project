@@ -1,24 +1,11 @@
-# vue-course-capstone-project
+# Rick & Morty characters (capstone project from Vue course)
 
-## Project setup
-```
-npm install
-```
+You can find web-site here: https://tpravdina-rick-and-morty-characters.s3.eu-central-1.amazonaws.com/index.html
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Description
 
-### Compiles and minifies for production
-```
-npm run build
-```
+This is web-site with "Rick & Morty" characters information.
 
-### Lints and fixes files
-```
-npm run lint
-```
+## Technologies
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Vue, SCSS
